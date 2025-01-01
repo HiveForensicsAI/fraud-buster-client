@@ -156,9 +156,9 @@ This package is licensed under the MIT License. See the LICENSE file for details
 
 Developed by **Hive Forensics A.I. Inc.**  
 [Visit us at hiveforensics.com](https://hiveforensics.com)
-```
 
----
+
+
 
 ### **Key Updates**
 
@@ -166,4 +166,4 @@ Developed by **Hive Forensics A.I. Inc.**
 2. **Backend and Frontend Examples**: Separate examples for Node.js and React.
 3. **Enhanced Professionalism**: Polished language to reflect branding and professionalism.
 
-Let me know if you need further modifications!
+```
