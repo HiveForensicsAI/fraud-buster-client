@@ -1,18 +1,18 @@
 
-### **README.md**
+---
 
-# Fraud Buster Client
+# **Fraud Buster Client**
 
-A modern client library for integrating Hive Forensics A.I. Inc.'s Fraud Buster API into your Node.js or React projects. This package provides a simple and efficient way to connect to the API, submit transaction details, and receive real-time risk assessments.
+A modern client library for integrating **Hive Forensics A.I. Inc.**'s **Fraud Buster API** into your **Node.js** or **React** projects. This package provides a simple and efficient way to connect to the API, submit transaction details, and receive real-time risk assessments.
 
 ---
 
 ## **Features**
 
-- Lightweight and optimized for both Node.js and browser environments (React compatible).
-- Supports customizable strictness for fraud detection.
-- Simple integration with `async/await` for modern applications.
-- Built-in error handling for robust production deployments.
+- Lightweight and optimized for both **Node.js** and **browser** environments (React compatible).
+- Supports fraud detection for transactions.
+- Simple integration using **async/await**.
+- **Built-in error handling** for robust production deployments.
 
 ---
 
@@ -28,16 +28,16 @@ npm install fraud-buster-client
 
 ## **Configuration**
 
-Set the API URL in your environment configuration. For example:
+Set the **API URL** and **API key** in your environment variables. 
 
-- Add a `.env` file to your project (for React or Node.js):
+Example **`.env` file** for **Node.js** or **React** projects:
 
 ```bash
-REACT_APP_FRAUD_BUSTER_URL="http://localhost:8000/api/transaction"
-REACT_APP_API_KEY="your-api-key-here"
+FRAUD_BUSTER_URL="http://localhost:8000/api/transaction"
+API_KEY="your-api-key-here"
 ```
 
-> Alternatively, pass the API URL and API key directly to the client constructor.
+> Alternatively, you can pass the API URL and API key **directly** when creating the client instance.
 
 ---
 
@@ -45,18 +45,16 @@ REACT_APP_API_KEY="your-api-key-here"
 
 ### **React Frontend Example**
 
-1. Import and initialize the client:
-
+1. **Import and initialize the client:**
 ```javascript
 import FraudBusterClient from 'fraud-buster-client';
 
 const fraudClient = new FraudBusterClient({
-  apiKey: process.env.REACT_APP_API_KEY,
+  apiKey: process.env.API_KEY, // Environment variable
 });
 ```
 
-2. Use the client to evaluate a transaction:
-
+2. **Evaluate a transaction:**
 ```javascript
 (async () => {
   try {
@@ -75,7 +73,7 @@ const fraudClient = new FraudBusterClient({
       isVPN: false,
       clientBrowser: "Chrome",
       deviceType: "Desktop",
-      ipAddress: "352.168.1.186",
+      ipAddress: "192.168.1.186",
       deviceFingerprint: "abcd1234efgh5678",
       transactionFrequency: 2,
       accountAge: 365,
@@ -96,6 +94,8 @@ const fraudClient = new FraudBusterClient({
 })();
 ```
 
+---
+
 ### **Node.js Backend Example**
 
 ```javascript
@@ -108,7 +108,14 @@ const fraudClient = new FraudBusterClient({
 
 (async () => {
   try {
-    const transactionData = { /* transaction data here */ };
+    const transactionData = { 
+      product: "MacBook Pro",
+      amount: 2500,
+      paymentMethod: "Visa",
+      ipAddress: "192.168.1.100",
+      onlinePurchase: true
+    };
+
     const response = await fraudClient.evaluateTransaction(transactionData);
     console.log("Fraud Assessment Result:", response);
   } catch (error) {
@@ -134,7 +141,7 @@ A typical API response includes:
 ### **Risk Level Definitions**
 
 | **Risk Level** | **Description**                           |
-|-----------------|-------------------------------------------|
+|----------------|-------------------------------------------|
 | `0`            | Critical Risk - Immediate Failure         |
 | `1`            | High Risk - Manual Verification Required  |
 | `2`            | Failed                                    |
@@ -148,7 +155,7 @@ A typical API response includes:
 
 ## **License**
 
-This package is licensed under the MIT License. See the LICENSE file for details.
+This package is licensed under the **MIT License**. See the `LICENSE` file for details.
 
 ---
 
@@ -157,13 +164,17 @@ This package is licensed under the MIT License. See the LICENSE file for details
 Developed by **Hive Forensics A.I. Inc.**  
 [Visit us at hiveforensics.com](https://hiveforensics.com)
 
-
-
+---
 
 ### **Key Updates**
+1. **Standardized Environment Variables**  
+   - Replaced `REACT_APP_FRAUD_BUSTER_URL` → `FRAUD_BUSTER_URL` for consistency in Node.js and React.
+   
+2. **Enhanced Error Handling**  
+   - The API client now logs errors before rethrowing them for better debugging.
 
-1. **React Compatibility**: Explicitly highlighted React usage with environment variables (`REACT_APP_*`).
-2. **Backend and Frontend Examples**: Separate examples for Node.js and React.
-3. **Enhanced Professionalism**: Polished language to reflect branding and professionalism.
+3. **Updated Example Code**  
+   - Made frontend and backend examples clearer.
 
-```
+---
+

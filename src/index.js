@@ -11,13 +11,13 @@ class FraudBusterClient {
    */
   constructor({ apiKey, apiUrl }) {
     this.apiKey = apiKey;
-    this.apiUrl = apiUrl || process.env.REACT_APP_FRAUD_BUSTER_URL; // Use environment variable for React
+    this.apiUrl = apiUrl || process.env.FRAUD_BUSTER_URL; // Standardizing environment variable
     if (!this.apiKey) {
       throw new Error("API key is required to initialize FraudBusterClient.");
     }
     if (!this.apiUrl) {
       throw new Error(
-        "API URL is required. Set REACT_APP_FRAUD_BUSTER_URL in environment or pass it in constructor."
+        "API URL is required. Set FRAUD_BUSTER_URL in environment or pass it in constructor."
       );
     }
   }
@@ -28,25 +28,29 @@ class FraudBusterClient {
    * @returns {Promise<Object>} - The response from the API
    */
   async evaluateTransaction(transactionData) {
-    const response = await fetch(this.apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': this.apiKey,
-      },
-      body: JSON.stringify(transactionData),
-    });
+    try {
+      const response = await fetch(this.apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': this.apiKey,
+        },
+        body: JSON.stringify(transactionData),
+      });
 
-    if (!response.ok) {
-      const errorMsg = await response.text();
-      throw new Error(
-        `Fraud Buster API request failed with status ${response.status}: ${errorMsg}`
-      );
+      if (!response.ok) {
+        const errorMsg = await response.text();
+        throw new Error(
+          `Fraud Buster API request failed with status ${response.status}: ${errorMsg}`
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error in evaluateTransaction:", error);
+      throw error;
     }
-
-    return response.json();
   }
 }
 
 export default FraudBusterClient;
-
