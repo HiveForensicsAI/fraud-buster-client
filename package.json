@@ -1,6 +1,6 @@
 {
   "name": "fraud-buster-client",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A React-compatible client for the Fraud Buster API by Hive Forensics A.I. Inc.",
   "main": "src/index.js",
   "keywords": [
